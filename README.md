@@ -25,8 +25,8 @@ Add both `SwiftTUI` and `SwiftTUIiOS` as dependencies. Use `TerminalView` to emb
 import SwiftUI
 import SwiftTUIiOS
 
-struct ContentView: SwiftUI.View {
-    var body: some SwiftUI.View {
+struct ContentView: View {
+    var body: some View {
         VStack {
             Text("My iOS App")
 
@@ -46,6 +46,8 @@ struct ContentView: SwiftUI.View {
     }
 }
 ```
+
+![screenshot_gettingStarted](screenshot_gettingStarted.png)
 
 For more, and to see the supported functionality, check out the [documentation](https://rensbreur.github.io/SwiftTUI/documentation/swifttui/).
 
