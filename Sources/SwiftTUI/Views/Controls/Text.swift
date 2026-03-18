@@ -1,11 +1,11 @@
 import Foundation
 
-public struct Text: View, PrimitiveView {
+public struct STText: STView, PrimitiveView {
     private var text: String?
     
     private var _attributedText: Any?
     
-    @available(macOS 12, *)
+    @available(macOS 12, iOS 15, *)
     private var attributedText: AttributedString? { _attributedText as? AttributedString }
     
     @Environment(\.foregroundColor) private var foregroundColor: Color
@@ -18,7 +18,7 @@ public struct Text: View, PrimitiveView {
         self.text = text
     }
     
-    @available(macOS 12, *)
+    @available(macOS 12, iOS 15, *)
     public init(_ attributedText: AttributedString) {
         self._attributedText = attributedText
     }
@@ -57,7 +57,7 @@ public struct Text: View, PrimitiveView {
         
         var _attributedText: Any?
         
-        @available(macOS 12, *)
+        @available(macOS 12, iOS 15, *)
         var attributedText: AttributedString? { _attributedText as? AttributedString }
         
         var foregroundColor: Color
@@ -91,7 +91,7 @@ public struct Text: View, PrimitiveView {
         override func cell(at position: Position) -> Cell? {
             guard position.line == 0 else { return nil }
             guard position.column < Extended(characterCount) else { return .init(char: " ") }
-            if #available(macOS 12, *), let attributedText {
+            if #available(macOS 12, iOS 15, *), let attributedText {
                 let characters = attributedText.characters
                 let i = characters.index(characters.startIndex, offsetBy: position.column.intValue)
                 let char = attributedText[i ..< characters.index(after: i)]
@@ -126,7 +126,7 @@ public struct Text: View, PrimitiveView {
         }
         
         private var characterCount: Int {
-            if #available(macOS 12, *), let attributedText {
+            if #available(macOS 12, iOS 15, *), let attributedText {
                 return attributedText.characters.count
             }
             return text?.count ?? 0
