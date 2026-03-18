@@ -1,3 +1,4 @@
+#if !os(iOS)
 import Foundation
 
 struct ArrowKeyParser {
@@ -47,3 +48,4 @@ struct ArrowKeyParser {
     }
 
 }
+#endif

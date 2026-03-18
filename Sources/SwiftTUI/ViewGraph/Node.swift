@@ -1,5 +1,5 @@
 import Foundation
-#if os(macOS)
+#if canImport(Combine)
 import Combine
 #endif
 
@@ -19,12 +19,12 @@ final class Node {
 
     var state: [String: Any] = [:]
     var environment: ((inout EnvironmentValues) -> Void)?
-    #if os(macOS)
+    #if canImport(Combine)
     var subscriptions: [String: AnyCancellable] = [:]
     #endif
 
     var control: Control?
-    weak var application: Application?
+    weak var application: ViewGraphHost?
 
     /// For modifiers only, references to the controls
     var controls: WeakSet<Control>?

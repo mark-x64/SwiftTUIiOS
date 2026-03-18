@@ -1,9 +1,10 @@
+#if !os(iOS)
 import Foundation
 #if os(macOS)
 import AppKit
 #endif
 
-public class Application {
+public class Application: ViewGraphHost {
     private let node: Node
     private let window: Window
     private let control: Control
@@ -30,7 +31,8 @@ public class Application {
         window.firstResponder = control.firstSelectableElement
         window.firstResponder?.becomeFirstResponder()
 
-        renderer = Renderer(layer: window.layer)
+        let backend = TerminalRenderingBackend()
+        renderer = Renderer(layer: window.layer, backend: backend)
         window.layer.renderer = renderer
 
         node.application = self
@@ -176,13 +178,11 @@ public class Application {
 
     private func stop() {
         renderer.stop()
-        resetInputMode() // Fix for: https://github.com/rensbreur/SwiftTUI/issues/25
+        resetInputMode()
         exit(0)
     }
 
-    /// Fix for: https://github.com/rensbreur/SwiftTUI/issues/25
     private func resetInputMode() {
-        // Reset ECHO and ICANON values:
         var tattr = termios()
         tcgetattr(STDIN_FILENO, &tattr)
         tattr.c_lflag |= tcflag_t(ECHO | ICANON)
@@ -190,3 +190,4 @@ public class Application {
     }
 
 }
+#endif

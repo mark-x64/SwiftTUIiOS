@@ -1,9 +1,9 @@
-#if os(macOS)
+#if canImport(Combine)
 import Foundation
 import Combine
 
 @propertyWrapper
-public struct ObservedObject<T: ObservableObject>: AnyObservedObject {
+public struct STObservedObject<T: ObservableObject>: AnyObservedObject {
     public let initialValue: T
 
     public init(initialValue: T) {

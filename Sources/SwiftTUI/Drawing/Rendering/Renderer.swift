@@ -9,21 +9,15 @@ class Renderer {
     /// This cache stores the screen content to see if printing is necessary.
     private var cache: [[Cell?]] = []
 
-    /// The current cursor position, which might need to be updated before
-    /// printing.
-    private var currentPosition: Position = .zero
+    var backend: RenderingBackend
 
-    private var currentForegroundColor: Color? = nil
-    private var currentBackgroundColor: Color? = nil
+    weak var application: ViewGraphHost?
 
-    private var currentAttributes = CellAttributes()
-
-    weak var application: Application?
-
-    init(layer: Layer) {
+    init(layer: Layer, backend: RenderingBackend) {
         self.layer = layer
+        self.backend = backend
         setCache()
-        setup()
+        backend.setup()
     }
 
     /// Draw only the invalidated part of the layer.
@@ -54,11 +48,11 @@ class Renderer {
                 }
             }
         }
+        backend.flush()
     }
 
     func stop() {
-        write(EscapeSequence.disableAlternateBuffer)
-        write(EscapeSequence.showCursor)
+        backend.stop()
     }
 
     private func drawPixel(_ cell: Cell, at position: Position) {
@@ -67,58 +61,7 @@ class Renderer {
         }
         if cache[position.line.intValue][position.column.intValue] != cell {
             cache[position.line.intValue][position.column.intValue] = cell
-            if self.currentPosition != position {
-                write(EscapeSequence.moveTo(position))
-                self.currentPosition = position
-            }
-            if self.currentForegroundColor != cell.foregroundColor {
-                write(cell.foregroundColor.foregroundEscapeSequence)
-                self.currentForegroundColor = cell.foregroundColor
-            }
-            let backgroundColor = cell.backgroundColor ?? .default
-            if self.currentBackgroundColor != backgroundColor {
-                write(backgroundColor.backgroundEscapeSequence)
-                self.currentBackgroundColor = backgroundColor
-            }
-            self.updateAttributes(cell.attributes)
-            write(String(cell.char))
-            self.currentPosition.column += 1
+            backend.drawCell(cell, at: position)
         }
     }
-
-    private func setup() {
-        write(EscapeSequence.enableAlternateBuffer)
-        write(EscapeSequence.clearScreen)
-        write(EscapeSequence.moveTo(currentPosition))
-        write(EscapeSequence.hideCursor)
-    }
-
-    private func updateAttributes(_ attributes: CellAttributes) {
-        if currentAttributes.bold != attributes.bold {
-            if attributes.bold { write(EscapeSequence.enableBold) }
-            else { write(EscapeSequence.disableBold) }
-        }
-        if currentAttributes.italic != attributes.italic {
-            if attributes.italic { write(EscapeSequence.enableItalic) }
-            else { write(EscapeSequence.disableItalic) }
-        }
-        if currentAttributes.underline != attributes.underline {
-            if attributes.underline { write(EscapeSequence.enableUnderline) }
-            else { write(EscapeSequence.disableUnderline) }
-        }
-        if currentAttributes.strikethrough != attributes.strikethrough {
-            if attributes.strikethrough { write(EscapeSequence.enableStrikethrough) }
-            else { write(EscapeSequence.disableStrikethrough) }
-        }
-        if currentAttributes.inverted != attributes.inverted {
-            if attributes.inverted { write(EscapeSequence.enableInverted) }
-            else { write(EscapeSequence.disableInverted) }
-        }
-        currentAttributes = attributes
-    }
-
-}
-
-private func write(_ str: String) {
-    str.withCString { _ = write(STDOUT_FILENO, $0, strlen($0)) }
 }

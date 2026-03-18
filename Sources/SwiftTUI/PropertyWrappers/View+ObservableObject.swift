@@ -1,4 +1,4 @@
-#if os(macOS)
+#if canImport(Combine)
 import Foundation
 import Combine
 
