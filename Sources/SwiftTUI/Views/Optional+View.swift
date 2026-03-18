@@ -1,6 +1,6 @@
 import Foundation
 
-extension Optional: View, PrimitiveView, GenericView, OptionalView where Wrapped: View {
+extension Optional: STView, PrimitiveView, GenericView, OptionalView where Wrapped: STView {
     public typealias Body = Never
 
     static var size: Int? {

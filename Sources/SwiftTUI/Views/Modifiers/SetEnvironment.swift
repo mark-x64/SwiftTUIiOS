@@ -1,7 +1,7 @@
 import Foundation
 
-public extension View {
-    func environment<T>(_ keyPath: WritableKeyPath<EnvironmentValues, T>, _ value: T) -> some View {
+public extension STView {
+    func environment<T>(_ keyPath: WritableKeyPath<STEnvironmentValues, T>, _ value: T) -> some STView {
         return SetEnvironment(content: self, keyPath: keyPath, value: value)
     }
 }

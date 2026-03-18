@@ -1,7 +1,7 @@
 import Foundation
 
-public extension View {
-    func foregroundColor(_ color: Color) -> some View {
+public extension STView {
+    func foregroundColor(_ color: STColor) -> some STView {
         environment(\.foregroundColor, color)
     }
 }

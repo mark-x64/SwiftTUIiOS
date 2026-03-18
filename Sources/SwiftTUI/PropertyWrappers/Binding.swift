@@ -1,7 +1,7 @@
 import Foundation
 
 @propertyWrapper
-public struct Binding<T> {
+public struct STBinding<T> {
     let get: () -> T
     let set: (T) -> Void
 
@@ -15,5 +15,5 @@ public struct Binding<T> {
         nonmutating set { set(newValue) }
     }
 
-    public var projectedValue: Binding<T> { self }
+    public var projectedValue: STBinding<T> { self }
 }

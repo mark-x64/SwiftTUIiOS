@@ -1,6 +1,6 @@
 import Foundation
 
-public struct TextField: View, PrimitiveView {
+public struct STTextField: STView, PrimitiveView {
     public let placeholder: String?
     public let action: (String) -> Void
 
@@ -95,7 +95,7 @@ public struct TextField: View, PrimitiveView {
 }
 
 extension EnvironmentValues {
-    public var placeholderColor: Color {
+    public var placeholderColor: STColor {
         get { self[PlaceholderColorEnvironmentKey.self] }
         set { self[PlaceholderColorEnvironmentKey.self] = newValue }
     }

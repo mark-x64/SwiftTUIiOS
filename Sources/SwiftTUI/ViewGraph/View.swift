@@ -1,11 +1,11 @@
 import Foundation
 
-public protocol View {
-    associatedtype Body: View
-    @ViewBuilder var body: Body { get }
+public protocol STView {
+    associatedtype Body: STView
+    @STViewBuilder var body: Body { get }
 }
 
-extension Never: View {
+extension Never: STView {
     public var body: Never {
         fatalError()
     }

@@ -1,7 +1,7 @@
 import Foundation
 
-public extension View {
-    func italic(_ isActive: Bool = true) -> some View {
+public extension STView {
+    func italic(_ isActive: Bool = true) -> some STView {
         environment(\.italic, isActive)
     }
 }

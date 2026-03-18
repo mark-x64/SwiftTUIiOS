@@ -1,6 +1,6 @@
 import Foundation
 
-public extension View {
+public extension STView {
     /// Aligns content to the top leading corner by default. Use the `.infinity` value for
     /// `maxWidth` or `maxHeight` to allow views to take up all space.
     func frame(
@@ -8,8 +8,8 @@ public extension View {
         maxWidth: Extended? = nil,
         minHeight: Extended? = nil,
         maxHeight: Extended? = nil,
-        alignment: Alignment = .center
-    ) -> some View {
+        alignment: STAlignment = .center
+    ) -> some STView {
         FlexibleFrame(content: self, minWidth: minWidth, maxWidth: maxWidth, minHeight: minHeight, maxHeight: maxHeight, alignment: alignment)
     }
 }

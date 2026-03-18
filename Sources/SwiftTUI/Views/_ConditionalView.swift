@@ -1,6 +1,6 @@
 import Foundation
 
-public struct _ConditionalView<TrueContent: View, FalseContent: View>: View, PrimitiveView {
+public struct _ConditionalView<TrueContent: STView, FalseContent: STView>: STView, PrimitiveView {
     enum ConditionalContent {
         case a(TrueContent)
         case b(FalseContent)

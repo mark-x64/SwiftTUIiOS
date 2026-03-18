@@ -1,12 +1,12 @@
 import Foundation
 
-public struct HStack<Content: View>: View, PrimitiveView, LayoutRootView {
+public struct STHStack<Content: STView>: STView, PrimitiveView, LayoutRootView {
     public let content: Content
-    let alignment: VerticalAlignment
+    let alignment: STVerticalAlignment
     let spacing: Extended?
 
     /// Vertically aligns content to the top by default.
-    public init(alignment: VerticalAlignment = .top, spacing: Extended? = nil, @ViewBuilder _ content: () -> Content) {
+    public init(alignment: STVerticalAlignment = .top, spacing: Extended? = nil, @STViewBuilder _ content: () -> Content) {
         self.content = content()
         self.alignment = alignment
         self.spacing = spacing

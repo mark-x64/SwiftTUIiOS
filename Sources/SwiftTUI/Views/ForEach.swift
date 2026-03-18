@@ -1,17 +1,17 @@
 import Foundation
 
-public struct ForEach<Data, ID, Content>: View, PrimitiveView where Data : RandomAccessCollection, ID : Hashable, Content : View {
+public struct STForEach<Data, ID, Content>: STView, PrimitiveView where Data : RandomAccessCollection, ID : Hashable, Content : STView {
     public var data: Data
     public var content: (Data.Element) -> Content
     private var id: KeyPath<Data.Element, ID>
 
-    public init(_ data: Data, @ViewBuilder content: @escaping (Data.Element) -> Content) where Data.Element: Identifiable, ID == Data.Element.ID {
+    public init(_ data: Data, @STViewBuilder content: @escaping (Data.Element) -> Content) where Data.Element: Identifiable, ID == Data.Element.ID {
         self.data = data
         self.content = content
         id = \.id
     }
 
-    public init(_ data: Data, id: KeyPath<Data.Element, ID>, @ViewBuilder content: @escaping (Data.Element) -> Content) {
+    public init(_ data: Data, id: KeyPath<Data.Element, ID>, @STViewBuilder content: @escaping (Data.Element) -> Content) {
         self.data = data
         self.id = id
         self.content = content

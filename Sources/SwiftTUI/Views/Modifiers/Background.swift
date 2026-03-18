@@ -1,7 +1,7 @@
 import Foundation
 
-public extension View {
-    func background(_ color: Color) -> some View {
+public extension STView {
+    func background(_ color: STColor) -> some STView {
         return Background(content: self, color: color)
     }
 }

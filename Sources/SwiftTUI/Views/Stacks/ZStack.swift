@@ -1,16 +1,16 @@
 import Foundation
 
-public struct ZStack<Content: View>: View, PrimitiveView, LayoutRootView {
+public struct STZStack<Content: STView>: STView, PrimitiveView, LayoutRootView {
     public let content: Content
-    let alignment: Alignment
-    
+    let alignment: STAlignment
+
     // Aligns content to the top leading corner by default.
-    public init(alignment: Alignment = .topLeading, @ViewBuilder _ content: () -> Content) {
+    public init(alignment: STAlignment = .topLeading, @STViewBuilder _ content: () -> Content) {
         self.content = content()
         self.alignment = alignment
     }
     
-    init(content: Content, alignment: Alignment = .center) {
+    init(content: Content, alignment: STAlignment = .center) {
         self.content = content
         self.alignment = alignment
     }

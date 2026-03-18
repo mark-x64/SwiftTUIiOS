@@ -1,8 +1,8 @@
 import Foundation
 
-public extension View {
+public extension STView {
     // Aligns content to the top leading corner by default.
-    func frame(width: Extended? = nil, height: Extended? = nil, alignment: Alignment = .topLeading) -> some View {
+    func frame(width: Extended? = nil, height: Extended? = nil, alignment: STAlignment = .topLeading) -> some STView {
         FixedFrame(content: self, width: width, height: height, alignment: alignment)
     }
 }

@@ -1,10 +1,10 @@
 import Foundation
 
-public extension View {
+public extension STView {
   /// Define a style for `Divider` component
   /// - Parameter style: choose a style between `.default`, `.doubled`, `.heavy`
   /// - Returns: Divider styled
-    func style(_ style: DividerStyle = .default) -> some View {
+    func style(_ style: DividerStyle = .default) -> some STView {
         environment(\.dividerStyle, style)
     }
 }
@@ -89,7 +89,7 @@ public struct DividerStyle: Equatable {
 
 /// Divide a content using a vertical or horizontal line.
 /// The orientation, will be defined by the parent, if `HStack` a horizontal line will be used, otherwise a vertical line.
-public struct Divider: View, PrimitiveView {
+public struct STDivider: STView, PrimitiveView {
     @Environment(\.stackOrientation) private var stackOrientation
     @Environment(\.foregroundColor) private var foregroundColor: Color
     @Environment(\.dividerStyle) private var style: DividerStyle

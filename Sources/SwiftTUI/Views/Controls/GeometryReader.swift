@@ -1,9 +1,9 @@
 import Foundation
 
-public struct GeometryReader<Content: View>: View, PrimitiveView {
+public struct STGeometryReader<Content: STView>: STView, PrimitiveView {
     let content: (Size) -> Content
 
-    public init(@ViewBuilder content: @escaping (Size) -> Content) {
+    public init(@STViewBuilder content: @escaping (Size) -> Content) {
         self.content = content
     }
 

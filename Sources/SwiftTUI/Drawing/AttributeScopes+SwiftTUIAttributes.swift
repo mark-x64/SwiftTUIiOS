@@ -1,6 +1,6 @@
 import Foundation
 
-@available(macOS 12, *)
+@available(macOS 12, iOS 15, *)
 extension AttributeScopes {
     public struct SwiftTUIAttributes: AttributeScope {
         public let backgroundColor = BackgroundColorAttribute()
@@ -13,15 +13,15 @@ extension AttributeScopes {
     }
 }
 
-@available(macOS 12, *)
+@available(macOS 12, iOS 15, *)
 extension AttributeScopes.SwiftTUIAttributes {
     public struct BackgroundColorAttribute: AttributedStringKey {
-        public typealias Value = Color
+        public typealias Value = STColor
         public static let name = "BackgroundColor"
     }
 
     public struct ForegroundColorAttribute: AttributedStringKey {
-        public typealias Value = Color
+        public typealias Value = STColor
         public static let name = "ForegroundColor"
     }
 
@@ -51,7 +51,7 @@ extension AttributeScopes.SwiftTUIAttributes {
     }
 }
 
-@available(macOS 12, *)
+@available(macOS 12, iOS 15, *)
 public extension AttributeDynamicLookup {
   subscript<T: AttributedStringKey>(dynamicMember keyPath: KeyPath<AttributeScopes.SwiftTUIAttributes, T>) -> T {
     self[T.self]

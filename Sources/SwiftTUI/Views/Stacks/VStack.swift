@@ -1,18 +1,18 @@
 import Foundation
 
-public struct VStack<Content: View>: View, PrimitiveView, LayoutRootView {
+public struct STVStack<Content: STView>: STView, PrimitiveView, LayoutRootView {
     public let content: Content
-    let alignment: HorizontalAlignment
+    let alignment: STHorizontalAlignment
     let spacing: Extended?
 
     /// Horizontally aligns content to the leading edge by default.
-    public init(alignment: HorizontalAlignment = .leading, spacing: Extended? = nil, @ViewBuilder _ content: () -> Content) {
+    public init(alignment: STHorizontalAlignment = .leading, spacing: Extended? = nil, @STViewBuilder _ content: () -> Content) {
         self.content = content()
         self.alignment = alignment
         self.spacing = spacing
     }
     
-    init(content: Content, alignment: HorizontalAlignment = .leading, spacing: Extended? = nil) {
+    init(content: Content, alignment: STHorizontalAlignment = .leading, spacing: Extended? = nil) {
         self.content = content
         self.alignment = alignment
         self.spacing = spacing

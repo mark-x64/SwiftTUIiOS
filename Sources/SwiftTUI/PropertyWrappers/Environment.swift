@@ -1,23 +1,23 @@
 import Foundation
 
-public protocol EnvironmentKey {
+public protocol STEnvironmentKey {
     associatedtype Value
     static var defaultValue: Value { get }
 }
 
-public struct EnvironmentValues {
+public struct STEnvironmentValues {
     var values: [ObjectIdentifier: Any] = [:]
-    public subscript<K: EnvironmentKey>(key: K.Type) -> K.Value {
+    public subscript<K: STEnvironmentKey>(key: K.Type) -> K.Value {
         get { values[ObjectIdentifier(key)] as? K.Value ?? K.defaultValue }
         set { values[ObjectIdentifier(key)] = newValue }
     }
 }
 
 @propertyWrapper
-public struct Environment<T>: AnyEnvironment {
-    let keyPath: KeyPath<EnvironmentValues, T>
+public struct STEnvironment<T>: AnyEnvironment {
+    let keyPath: KeyPath<STEnvironmentValues, T>
 
-    public init(_ keyPath: KeyPath<EnvironmentValues, T>) {
+    public init(_ keyPath: KeyPath<STEnvironmentValues, T>) {
         self.keyPath = keyPath
     }
 

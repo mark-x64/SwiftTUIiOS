@@ -1,7 +1,7 @@
 import Foundation
 
-public extension View {
-    func bold(_ isActive: Bool = true) -> some View {
+public extension STView {
+    func bold(_ isActive: Bool = true) -> some STView {
         environment(\.bold, isActive)
     }
 }

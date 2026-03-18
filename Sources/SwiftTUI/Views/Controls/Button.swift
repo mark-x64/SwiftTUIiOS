@@ -1,18 +1,18 @@
 import Foundation
 
-public struct Button<Label: View>: View, PrimitiveView {
+public struct STButton<Label: STView>: STView, PrimitiveView {
     let label: VStack<Label>
     let hover: () -> Void
     let action: () -> Void
 
-    public init(action: @escaping () -> Void, hover: @escaping () -> Void = {}, @ViewBuilder label: () -> Label) {
+    public init(action: @escaping () -> Void, hover: @escaping () -> Void = {}, @STViewBuilder label: () -> Label) {
         self.label = VStack(content: label())
         self.action = action
         self.hover = hover
     }
 
-    public init(_ text: String, hover: @escaping () -> Void = {}, action: @escaping () -> Void) where Label == Text {
-        self.label = VStack(content: Text(text))
+    public init(_ text: String, hover: @escaping () -> Void = {}, action: @escaping () -> Void) where Label == STText {
+        self.label = VStack(content: STText(text))
         self.action = action
         self.hover = hover
     }

@@ -1,9 +1,9 @@
 import Foundation
 
-public struct Group<Content: View>: View, PrimitiveView {
+public struct STGroup<Content: STView>: STView, PrimitiveView {
     public let content: Content
 
-    public init(@ViewBuilder _ content: () -> Content) {
+    public init(@STViewBuilder _ content: () -> Content) {
         self.content = content()
     }
 

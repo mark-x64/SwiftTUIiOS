@@ -1,15 +1,15 @@
 import Foundation
 
-public extension View {
-    func padding(_ edges: Edges = .all, _ length: Extended? = nil) -> some View {
+public extension STView {
+    func padding(_ edges: Edges = .all, _ length: Extended? = nil) -> some STView {
         return Padding(content: self, edges: edges, length: length)
     }
 
-    func padding(_ length: Extended) -> some View {
+    func padding(_ length: Extended) -> some STView {
         return Padding(content: self, edges: .all, length: length)
     }
-  
-    func padding(_ edges: Edges = .all, _ length: Int) -> some View {
+
+    func padding(_ edges: Edges = .all, _ length: Int) -> some STView {
         return Padding(content: self, edges: edges, length: .init(length))
     }
 }

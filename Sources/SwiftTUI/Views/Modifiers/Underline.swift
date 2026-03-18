@@ -1,7 +1,7 @@
 import Foundation
 
-public extension View {
-    func underline(_ isActive: Bool = true) -> some View {
+public extension STView {
+    func underline(_ isActive: Bool = true) -> some STView {
         environment(\.underline, isActive)
     }
 }

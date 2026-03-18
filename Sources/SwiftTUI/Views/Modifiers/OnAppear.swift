@@ -1,7 +1,7 @@
 import Foundation
 
-public extension View {
-    func onAppear(_ action: @escaping () -> Void) -> some View {
+public extension STView {
+    func onAppear(_ action: @escaping () -> Void) -> some STView {
         return OnAppear(content: self, action: action)
     }
 }

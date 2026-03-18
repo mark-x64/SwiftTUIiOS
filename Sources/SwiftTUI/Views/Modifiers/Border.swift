@@ -1,11 +1,11 @@
 import Foundation
 
-public extension View {
-    func border(_ color: Color? = nil, style: BorderStyle = .default) -> some View {
+public extension STView {
+    func border(_ color: STColor? = nil, style: BorderStyle = .default) -> some STView {
         return Border(content: self, color: color, style: style)
     }
-  
-    func border(_ style: BorderStyle = .default) -> some View {
+
+    func border(_ style: BorderStyle = .default) -> some STView {
         Border(content: self, color: nil, style: style)
     }
 }
