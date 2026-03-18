@@ -1,4 +1,4 @@
-# ``SwiftTUI/ViewBuilder``
+# ``SwiftTUI/STViewBuilder``
 
 ## Topics
 
